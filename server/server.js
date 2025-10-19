@@ -10,16 +10,25 @@ import productRouter from "./routes/productRoute.js";
 import cartRouter from "./routes/cartRoute.js";
 import addressRouter from "./routes/addressRoute.js";
 import orderRouter from "./routes/orderRoute.js";
+import requestRouter from "./routes/requestRoute.js";
+import technicianRouter from "./routes/technicianRoute.js";
 import { stripeWebhooks } from "./controllers/orderController.js";
 
 const app=express();
 const port=process.env.PORT || 4000;
 
 await connectDB();
-await connectCloudinary();
+if (process.env.SKIP_CLOUDINARY !== "1") {
+  await connectCloudinary();
+}
 
 
-const allowedOrigins=["http://localhost:5173","https://shop-herefrontend.vercel.app"]
+const allowedOrigins=[
+  "http://localhost:5173",
+  "http://localhost:4000",
+  "http://127.0.0.1:5173",
+  "https://shop-herefrontend.vercel.app"
+]
 
 app.post("/stripe",express.raw({type:"application/json"}),stripeWebhooks)
 
@@ -37,6 +46,8 @@ app.use("/api/product",productRouter);
 app.use("/api/cart",cartRouter);
 app.use("/api/address",addressRouter);
 app.use("/api/order",orderRouter);
+app.use("/api/requests", requestRouter);
+app.use("/api/technician", technicianRouter);
 
 
 

@@ -10,6 +10,11 @@ import Footer from './components/Footer'
 import { useAppContext } from './context/AppContext'
 import Login from './components/Login'
 import AllProducts from './pages/AllProducts'
+import ServiceList from './pages/ServiceList'
+import ServiceNew from './pages/ServiceNew'
+import ServiceDetail from './pages/ServiceDetail'
+import TechLogin from './pages/Technician/Login'
+import TechDashboard from './pages/Technician/Dashboard'
 import ProductCategory from './pages/ProductCategory'
 import ProductDetails from './pages/ProductDetails'
 import Cart from './pages/Cart'
@@ -40,6 +45,11 @@ const {showUserLogin,isSeller}=useAppContext();
           <Route path='/cart' element={<Cart/>}/>
           <Route path='/add-address' element={<AddAddress/>}/>
           <Route path='/my-orders' element={<MyOrders/>}/>
+          <Route path='/service' element={<ServiceList/>}/>
+          <Route path='/service/new' element={<ServiceNew/>}/>
+          <Route path='/service/:id' element={<ServiceDetail/>}/>
+          <Route path='/tech/login' element={<TechLogin/>}/>
+          <Route path='/tech' element={<TechDashboard/>}/>
           <Route path='/loader' element={<Loading/>}/>
            <Route path="/seller" element={isSeller?<SellerLayout/>:<SellerLogin/>}>
              <Route index element={isSeller?<AddProduct/>:null}/>
