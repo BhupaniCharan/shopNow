@@ -1,0 +1,12 @@
+{
+  "name": "mern-service-prototype",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "concurrently \"npm --prefix server run start\" \"npm --prefix client run dev\"",
+    "dev:pnpm": "concurrently \"pnpm --filter server start\" \"pnpm --filter client dev\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
